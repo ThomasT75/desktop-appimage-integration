@@ -54,10 +54,16 @@ func main()  {
         appImagesPaths = append(appImagesPaths, path)
       }
     } else {
-      return filepath.SkipDir
+      if appImageDir != path {
+        return filepath.SkipDir
+      }
     }
     return nil
   })
+
+  if len(appImagesPaths) == 0 {
+    println("no appimages found")
+  }
 
   // create the menu
   if CREATE_MENU {
